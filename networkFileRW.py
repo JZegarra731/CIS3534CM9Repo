@@ -70,17 +70,7 @@ def main():
 
     with open (FILE_S) as file_s:
         switches = json.load(file_s)
-    
-    #dictionaries
-    ##---->>>> read the routers and addresses into the router dictionary
-
-    # routers = {}
-
-
-    ##---->>>> read the switches and addresses into the switches dictionary
-
-    # switches = {}
-
+   
 
     #the updated dictionary holds the device name and new ip address
     updated = {}
