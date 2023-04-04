@@ -6,15 +6,19 @@
 #read equipment from a file, write updates & errors to file
 
 ##---->>>> Use a try/except clause to import the JSON module
-
-
+try:
+    import json
+except ImportError:
+    print("Could not find module json")
 
 ##---->>>> Create file constants for the file names; file constants can be reused
 ##         There are 2 files to read this program: equip_r.txt and equip_s.txt
 ##         There are 2 files to write in this program: updated.txt and errors.txt
       
+FILE_R = "equip_r.txt"
 
 
+FILE_S = "equip_s.txt"
 
 
 #prompt constants
@@ -61,18 +65,21 @@ def main():
 
     ##---->>>> open files here
 
+    with open (FILE_R) as file_r:
+        routers = json.load(file_r)
 
-
+    with open (FILE_S) as file_s:
+        switches = json.load(file_s)
     
     #dictionaries
     ##---->>>> read the routers and addresses into the router dictionary
 
-    routers = {}
+    # routers = {}
 
 
     ##---->>>> read the switches and addresses into the switches dictionary
 
-    switches = {}
+    # switches = {}
 
 
     #the updated dictionary holds the device name and new ip address
@@ -132,6 +139,9 @@ def main():
 
     ##---->>>> write the updated equipment dictionary to a file
 
+    FILE_U = "updated.txt"
+    with open (FILE_U, "w") as file_u:
+        json.dump(updated, file_u)
     
     print("Updated equipment written to file 'updated.txt'")
     print()
@@ -139,13 +149,12 @@ def main():
 
     ##---->>>> write the list of invalid addresses to a file
     
+    FILE_E = "errors.txt"
+    with open (FILE_E, "w") as file_e:
+        json.dump(invalidIPAddresses, file_e)
 
     print("List of invalid addresses written to file 'errors.txt'")
 
 #top-level scope check
 if __name__ == "__main__":
     main()
-
-
-
-
